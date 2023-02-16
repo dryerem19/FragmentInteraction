@@ -17,9 +17,9 @@ class DetailFragment : Fragment() {
         return  inflater.inflate(R.layout.fragment_detail, container, false)
     }
 
-    fun setSelectedItem(selectedItem: String) {
-        val view = view?.findViewById<TextView>(R.id.detailsText)
-        view?.text = selectedItem
+    fun setSelectedItem(country: String?, desc: String?) {
+        view?.findViewById<TextView>(R.id.detailsText)?.text = country
+        view?.findViewById<TextView>(R.id.descText)?.text = desc
     }
 
 }

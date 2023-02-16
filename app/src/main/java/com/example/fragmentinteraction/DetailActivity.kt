@@ -6,7 +6,8 @@ import android.os.Bundle
 
 class DetailActivity : AppCompatActivity() {
 
-    private var mSelectedItem: String = "Не выбрано"
+    private var mSelectedCountry: String? = "Не выбрано"
+    private var mDesc: String? = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,14 +19,14 @@ class DetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_detail)
         val extras = intent.extras
         if (extras != null) {
-            mSelectedItem = extras.getString("SELECTED_ITEM").toString()
+            mSelectedCountry = extras.getString("SELECTED_ITEM")
+            mDesc = extras.getString("SELECTED_DESC")
         }
     }
 
     override fun onResume() {
         super.onResume()
-        val fragment: DetailFragment = supportFragmentManager.findFragmentById(R.id.detailFragment)
-            as DetailFragment
-        fragment.setSelectedItem(mSelectedItem)
+        (supportFragmentManager.findFragmentById(R.id.detailFragment)
+                as DetailFragment?)?.setSelectedItem(mSelectedCountry, mDesc)
     }
 }
